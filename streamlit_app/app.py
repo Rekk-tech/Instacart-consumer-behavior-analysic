@@ -322,12 +322,15 @@ def generate_sample_data():
     products_df = pd.DataFrame(products)
     
     # Orders with time patterns
+    # Fix probability distribution for order_hour_of_day (must sum to 1.0)
+    hour_probs = [0.02]*6 + [0.04]*4 + [0.06]*6 + [0.05]*4 + [0.03]*4
+    hour_probs = np.array(hour_probs) / np.sum(hour_probs)  # Normalize to sum to 1.0
+    
     orders = pd.DataFrame({
         'order_id': range(1, n_orders + 1),
         'user_id': np.random.choice(customers['user_id'], n_orders),
         'order_dow': np.random.choice(range(7), n_orders, p=[0.12, 0.11, 0.13, 0.14, 0.15, 0.18, 0.17]),
-        'order_hour_of_day': np.random.choice(range(24), n_orders, 
-                                            p=[0.02]*6 + [0.04]*4 + [0.06]*6 + [0.05]*4 + [0.03]*4),
+        'order_hour_of_day': np.random.choice(range(24), n_orders, p=hour_probs),
         'days_since_prior_order': np.random.exponential(7, n_orders),
         'order_number': np.random.randint(1, 50, n_orders)
     })
