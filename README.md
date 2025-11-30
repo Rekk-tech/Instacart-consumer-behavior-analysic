@@ -613,6 +613,3 @@ Detailed documentation cho từng component:
 4. Ensure code quality checks pass
 5. Submit pull request
 
-## 📄 License
-
-MIT License - see LICENSE file for details.
