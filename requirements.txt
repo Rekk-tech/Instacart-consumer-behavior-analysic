@@ -1,0 +1,54 @@
+# Instacart Recommendation System - Production Requirements
+
+# Core Data Science Libraries
+numpy>=1.21.0
+pandas>=1.3.0  
+scikit-learn>=1.0.0
+scipy>=1.7.0
+
+# Machine Learning Frameworks
+xgboost>=1.5.0
+tensorflow>=2.8.0
+keras>=2.8.0
+
+# Deep Learning - Sequential Models
+keras-tcn>=3.4.0  # For TCN models (optional, fallback implemented)
+
+# Data Processing
+pyarrow>=5.0.0  # For Parquet support
+joblib>=1.1.0   # For model serialization
+
+# Configuration Management
+pyyaml>=6.0
+dataclasses>=0.6  # For Python < 3.7 compatibility
+
+# API Framework
+fastapi>=0.75.0
+uvicorn>=0.15.0
+pydantic>=1.8.0
+
+# Utilities
+tqdm>=4.62.0        # Progress bars
+pathlib>=1.0.1      # Path handling
+typing-extensions>=4.0.0
+
+# Optional Dependencies (for enhanced functionality)
+# Jupyter support (if running notebooks)
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Visualization (optional)
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Development Dependencies
+pytest>=6.2.0
+black>=22.0.0
+flake8>=4.0.0
+
+# Memory optimization
+psutil>=5.8.0
+
+# Logging
+colorlog>=6.6.0

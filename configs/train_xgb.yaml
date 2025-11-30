@@ -1,0 +1,68 @@
+# Instacart Recommendation System Configuration
+
+project_root: "."
+
+# Data pipeline configuration
+data:
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed" 
+  features_data_path: "data/features"
+  splits_data_path: "data/splits"
+  
+  # ETL settings
+  test_order_percentage: 0.1
+  min_orders_per_user: 4
+  min_products_per_user: 10
+  
+  # RFM settings
+  rfm_quantiles: 5
+
+# Feature engineering configuration  
+features:
+  # User feature categories
+  user_feature_categories:
+    - "order_patterns"
+    - "basket_patterns" 
+    - "product_patterns"
+    - "department_aisle"
+    - "rfm_metrics"
+    
+  # Item feature categories
+  item_feature_categories:
+    - "popularity"
+    - "reorder_patterns"
+    - "department_aisle"
+    
+  # Sequence settings
+  max_sequence_length: 20
+  vocab_size_limit: 10000
+
+# XGBoost model configuration
+model:
+  model_type: "xgb"
+  test_size: 0.2
+  random_state: 42
+  n_jobs: -1
+  
+  # XGBoost hyperparameters
+  xgb_params:
+    objective: "binary:logistic"
+    eval_metric: "auc"
+    max_depth: 6
+    learning_rate: 0.1
+    n_estimators: 100
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+
+# Model serving configuration
+serving:
+  host: "0.0.0.0"
+  port: 8000
+  model_path: "models/archived"
+  max_recommendations: 10
+  batch_inference_size: 1000
+  
+  # Cache settings
+  enable_cache: true
+  cache_ttl: 3600

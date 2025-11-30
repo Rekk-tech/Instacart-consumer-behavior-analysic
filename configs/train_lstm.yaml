@@ -1,0 +1,74 @@
+# Instacart LSTM Model Configuration
+
+project_root: "."
+
+# Data pipeline configuration
+data:
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed"
+  features_data_path: "data/features"
+  splits_data_path: "data/splits"
+  
+  # ETL settings
+  test_order_percentage: 0.1
+  min_orders_per_user: 4
+  min_products_per_user: 10
+  
+  # RFM settings
+  rfm_quantiles: 5
+
+# Feature engineering configuration
+features:
+  # User feature categories
+  user_feature_categories:
+    - "order_patterns"
+    - "basket_patterns"
+    - "product_patterns" 
+    - "department_aisle"
+    - "rfm_metrics"
+    
+  # Item feature categories
+  item_feature_categories:
+    - "popularity"
+    - "reorder_patterns"
+    - "department_aisle"
+    
+  # Sequence settings
+  max_sequence_length: 20
+  vocab_size_limit: 10000
+
+# LSTM model configuration
+model:
+  model_type: "lstm"
+  test_size: 0.2
+  random_state: 42
+  
+  # Model architecture
+  embedding_dim: 128
+  lstm_units: [256, 128]
+  dropout: 0.2
+  dense_units: 64
+  
+  # Training parameters
+  batch_size: 256
+  epochs: 20
+  patience: 5
+  learning_rate: 0.001
+  validation_split: 0.2
+  
+  # Callbacks
+  reduce_lr_factor: 0.5
+  reduce_lr_patience: 3
+  reduce_lr_min_lr: 0.0001
+
+# Model serving configuration
+serving:
+  host: "0.0.0.0"
+  port: 8001
+  model_path: "models/archived"
+  max_recommendations: 10
+  batch_inference_size: 1000
+  
+  # Cache settings
+  enable_cache: true
+  cache_ttl: 3600
